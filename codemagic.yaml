@@ -1,0 +1,19 @@
+workflows:
+  hello-world:
+    name: Quotes Trivia
+    environment:
+      vars:
+        SONAR_TOKEN: Encrypted(Z0FBQUFBQmhMNG5ITXR3NXhodFpwNkNFTHYwLTRtbDBGSXM0N0VselhfR1RYQWljODk5TmQ5NTE0bmVSREo0cmp2MC0xQW9jWURoTF92azQ2OGxhZHlzOWllQzFnVjdSb0NCem9YVy1CR0RZMmZHSTVNMGxOdEJPY2QyYTFlZl9zeGhaTzduWndKQTE=) # enter the encrypted version of your SonarCloud token
+        SONAR_ORG_KEY: marcin-majewski-sonarsource-1
+        SONAR_PROJECT_KEY: marcin-majewski-sonarsource_android-calculator
+    scripts:
+      - |
+        # Generate debug build
+        ./gradlew assembleDebug        
+      - |
+        # Generate and upload code analysis report
+        ./gradlew sonarqube \
+        -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+        -Dsonar.organization=$SONAR_ORG_KEY \
+        -Dsonar.host.url=https://mmsc.eu.ngrok.io \
+        -Dsonar.login=$SONAR_TOKEN \   
