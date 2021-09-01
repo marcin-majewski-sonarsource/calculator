@@ -8,6 +8,10 @@ workflows:
         SONAR_PROJECT_KEY: marcin-majewski-sonarsource_calculator
     scripts:
       - |
+        #!/bin/sh
+        set -ex
+        printenv
+      - |
         # download and install SonarQube
         wget -O $FCI_BUILD_DIR/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-macosx.zip
         unzip $FCI_BUILD_DIR/sonar-scanner.zip
