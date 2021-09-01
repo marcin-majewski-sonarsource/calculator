@@ -6,6 +6,17 @@ workflows:
         SONAR_TOKEN: Encrypted(Z0FBQUFBQmhMNVR4U3N2UUVWQWp2SWNnVTJoUC0wRzdwQklnMlJHc0xRWFB2cjFEWG5oYjJ0d2hBTTB5RFM0RHluWkxfWERyVFZmbUdTNVFWUVFmWEE2VV9MSDVKN2lRbGZsUEU1WDZTTHdLcnVzRzdUUFRXOFBYMHNXcF9WbU55SjlRZFFJcjlaZmI=)
         SONAR_ORG_KEY: marcin-majewski-sonarsource-1
         SONAR_PROJECT_KEY: marcin-majewski-sonarsource_calculator
+    triggering:
+      events:
+        - push
+        - pull_request
+      branch_patterns:
+        - pattern: '*'
+          include: true
+          source: true
+      tag_patterns:
+        - pattern: '*'
+          include: true
     scripts:
       - |
         # download and install SonarQube
