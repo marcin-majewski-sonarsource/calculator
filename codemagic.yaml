@@ -3,17 +3,21 @@ workflows:
     name: Quotes Trivia
     environment:
       vars:
-        SONAR_TOKEN: Encrypted(Z0FBQUFBQmhMNG5ITXR3NXhodFpwNkNFTHYwLTRtbDBGSXM0N0VselhfR1RYQWljODk5TmQ5NTE0bmVSREo0cmp2MC0xQW9jWURoTF92azQ2OGxhZHlzOWllQzFnVjdSb0NCem9YVy1CR0RZMmZHSTVNMGxOdEJPY2QyYTFlZl9zeGhaTzduWndKQTE=) # enter the encrypted version of your SonarCloud token
+        SONAR_TOKEN: Encrypted(Z0FBQUFBQmhMNVBYWFdXQ1dVT05lNThUMnhqLTJ0eEpzU2pncTF0RXI4YjhyMHBYXzZGcEtVTTlWQ0VueEJRd0JiLVNUOWo0Q1NDWkRPYko5OWFyMmFYWVdkUU5iNFdTVm5oYjItMEZRQlVWc3FadVhIM1NHSzJJX0ZVdjgzLS1hQ0ZURlBuejRvb0E=)
         SONAR_ORG_KEY: marcin-majewski-sonarsource-1
-        SONAR_PROJECT_KEY: marcin-majewski-sonarsource_android-calculator
+        SONAR_PROJECT_KEY: marcin-majewski-sonarsource_calculator
     scripts:
       - |
-        # Generate debug build
-        ./gradlew assembleDebug        
+        # download and install SonarQube
+        wget -O $FCI_BUILD_DIR/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-macosx.zip
+        unzip $FCI_BUILD_DIR/sonar-scanner.zip
+        mv sonar-scanner-* sonar-scanner    
       - |
         # Generate and upload code analysis report
-        ./gradlew sonarqube \
+        export PATH=$PATH:$FCI_BUILD_DIR/sonar-scanner/bin
+        sonar-scanner \
         -Dsonar.projectKey=$SONAR_PROJECT_KEY \
         -Dsonar.organization=$SONAR_ORG_KEY \
         -Dsonar.host.url=https://mmsc.eu.ngrok.io \
-        -Dsonar.login=$SONAR_TOKEN \   
+        -Dsonar.login=$SONAR_TOKEN \
+        -Dsonar.sources=.           
