@@ -3,7 +3,7 @@ workflows:
     name: Quotes Trivia
     environment:
       vars:
-        SONAR_TOKEN: Encrypted(Z0FBQUFBQmhMNVBYWFdXQ1dVT05lNThUMnhqLTJ0eEpzU2pncTF0RXI4YjhyMHBYXzZGcEtVTTlWQ0VueEJRd0JiLVNUOWo0Q1NDWkRPYko5OWFyMmFYWVdkUU5iNFdTVm5oYjItMEZRQlVWc3FadVhIM1NHSzJJX0ZVdjgzLS1hQ0ZURlBuejRvb0E=)
+        SONAR_TOKEN: Encrypted(Z0FBQUFBQmhMNVR4U3N2UUVWQWp2SWNnVTJoUC0wRzdwQklnMlJHc0xRWFB2cjFEWG5oYjJ0d2hBTTB5RFM0RHluWkxfWERyVFZmbUdTNVFWUVFmWEE2VV9MSDVKN2lRbGZsUEU1WDZTTHdLcnVzRzdUUFRXOFBYMHNXcF9WbU55SjlRZFFJcjlaZmI=)
         SONAR_ORG_KEY: marcin-majewski-sonarsource-1
         SONAR_PROJECT_KEY: marcin-majewski-sonarsource_calculator
     scripts:
